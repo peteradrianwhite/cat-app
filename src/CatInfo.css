@@ -1,0 +1,42 @@
+
+.cat-fact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .cat-image {
+    max-width: 100%;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .cat-fact {
+    margin: 20px 0;
+    font-size: 1.2em;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
