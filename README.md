@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+Cats FTW - Peter White App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Thanks for taking the time to review my submission. Please let me know if there are any questions or anything is unclear. As I mention below, the CATaaS API will occasionally take a second to fire up the first cat pic, so if it seems as though it isn’t loading, give it a second. 
 
-## Available Scripts
+Notes for bonus points:
 
-In the project directory, you can run:
+I know the request was to constrain images by width but I constrained images based on height instead as I found constraining by width negatively impacted the appearance of wide photos. 
+Public deployment completed
+Microsoft technologies used: Azure for deployment, VS Code for development. 
 
-### `npm start`
+Other notes:
+Component resizes to fit screen down to a minimum size 
+Added an extra feature where you can save cat photos so you don’t lose your favorites
+Occasionally the API (cataas) is slow to respond and images take a minute to appear. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Deployment
+The app is currently live on Azure at https://lemon-ground-03ead1c0f.4.azurestaticapps.net/. It is deployed with CI/CD using Github Actions, pulled from this repo: https://github.com/peteradrianwhite/cat-app
 
-### `npm test`
+It can be run locally by unzipping and navigating to the root folder (cat-app) in a command shell. From there you can type ‘npm start’ to start the app locally. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Time Spent
+Approximately 2 hours plus whatever it took to write this up. 
 
-### `npm run build`
+Challenges: took a minute to get CI/CD flow working with Azure. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Compromises/Shortcuts - I used GPT to make the stylesheet because no one should have to write CSS for free. Save cat feature is pretty basic and only saves for the session as I didn’t want to get a DB involved. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Feedback - With free hosting offers from all cloud platforms it would make sense to make a quick CI deployment a part of the project. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Forward Looking Items - Definitely a check on the validity of photos returned by the API, as occasionally they are invalid. Also not relying on a third party API for pics, we’d have to build our own database. Better colors/images/etc. Some user authorization would be nice, as well as a better ability to save images. Would add a search feature as well. Allow users to upload pictures. Realistically this is bare bones, so there are infinite things we could do with it. Why not hook it all up to the blockchain and we’ll sell the pics as NFTs and live like royalty. Royalty!  
 
-### `npm run eject`
+Thanks for reading!
+Peter
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
