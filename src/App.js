@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import CatInfo from './CatInfo';
 import './App.css';
 
