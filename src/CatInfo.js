@@ -53,7 +53,7 @@ const CatInfo = () => {
       <button onClick={fetchCatGif} className="gif-button">How about a gif?</button> 
       <button onClick={saveCatPic} className="save-button">Save Cat Pic</button>
       <div style={{height:'20px'}}>
-      <label style={{fontSize:'12pt'}}>Gifs Take a weirdly long time to to load from the API</label>
+      <label style={{fontSize:'12pt'}}>Gifs Take a weirdly long time to to load from the API and occassionally fail. But they're very cute.</label>
       </div>
     </div>
         <div className="favorites-container">
