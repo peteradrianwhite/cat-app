@@ -2,12 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import './CatInfo.css'; // Import your CSS file
 import { openDB } from 'idb';
-
-
-
-const LOCAL_STORAGE_KEY = 'catImages';
-const FAVORITES_KEY = 'favoriteCats'; // Key for saving favorite images
-
+import { onAuthStateChanged, signOut  } from 'firebase/auth';
+import { auth } from './firebaseConfig.js'; 
+import { useNavigate } from 'react-router-dom';
 
 // Open IndexedDB and create object store if needed
 const dbPromise = openDB('CatAppDB', 1, {
@@ -69,11 +66,6 @@ const fetchAndSaveImageAsBlob = async (fact) => {
     await transaction.done;
   };
 
-
-
-  
-
-
 const CatInfo = () => {
   const [catData, setCatData] = useState([]); 
   const [page, setPage] = useState(1); 
@@ -89,9 +81,33 @@ const CatInfo = () => {
   const [catFact, setCatFact] = useState("")
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Hook for navigation
+ 
+ 
+  // Intersection Observer to trigger more loading as the user scrolls
+ const lastCatElementRef = useCallback(node => {
+  if (observer.current) observer.current.disconnect();
+  observer.current = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      setPage(prevPage => prevPage + 1); // Load next page
+    }
+  });
+  if (node) observer.current.observe(node);
+}, []);
 
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
 
-  const toggleUploadModal = () => {
+    return () => unsubscribe();
+  }, []);
+
+   const toggleUploadModal = () => {
     setIsUploadModalOpen(!isUploadModalOpen);
   };
 
@@ -111,7 +127,7 @@ const CatInfo = () => {
     }
 
     const reader = new FileReader();
-    reader.readAsArrayBuffer(imageFile); // Read file as ArrayBuffer to save in IndexedDB
+    reader.readAsArrayBuffer(imageFile); 
     reader.onloadend = async () => {
       const imageBlob = new Blob([reader.result], { type: imageFile.type });
 
@@ -123,9 +139,16 @@ const CatInfo = () => {
     };
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Firebase sign out
+      navigate('/login'); // Redirect to login page after logout
+    } catch (error) {
+      console.error('Error logging out:', error.message);
+    }
+  };
 
-
-      // Clear all favorites
+     // Clear all favorites
      const clearFavorites = async () => {
       await clearAllFavorites();  // Set all favorites to false in IndexedDB
       setFavorites([]);  // Clear favorites in the UI
@@ -172,16 +195,7 @@ const CatInfo = () => {
     };
 
 
-  // Intersection Observer to trigger more loading as the user scrolls
-  const lastCatElementRef = useCallback(node => {
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        setPage(prevPage => prevPage + 1); // Load next page
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, []);
+
 
     // Open modal with clicked image index
     const handleImageClick = (cat) => {
@@ -278,12 +292,17 @@ const CatInfo = () => {
   }, [page]);
 
 
+     // Show loading state until we know if the user is authenticated or not
+     if (loading) {
+      return <div>Loading...</div>;
+    }
 
   return (
    <div className="cat-app-container">
 
-     {/* Video overlay that plays when the app loads */}
-     {isVideoPlaying && (
+    
+   {/* Video overlay that plays when the app loads */}
+   {isVideoPlaying && (
            <div className={`video-overlay ${isVideoExiting ? 'video-exit' : ''}`}>
           <video
             className="intro-video"
@@ -294,7 +313,6 @@ const CatInfo = () => {
           />
         </div>
       )}
-
       <div className='app-container'>
       {/* Title */}
       <h1 className="cat-app-title">Welcome to Cat App</h1>
@@ -352,10 +370,12 @@ const CatInfo = () => {
 
         {/* Clear Favorites Button */}
         <div className="cat-app-container">
-        <button onClick={clearFavorites} className="clear-favorites-button">Clear Favorites</button>
-        <button onClick={toggleUploadModal} className="upload-button">
-        Upload Cat Image
-      </button>
+        <p><button onClick={clearFavorites} className="clear-favorites-button">Clear Favorites</button>
+        <button onClick={toggleUploadModal} className="upload-button"> Upload Cat Image
+        </button>
+        <button onClick={handleLogout} className="logout-button">Logout</button></p>
+                
+       
         </div>
      
       {/* Upload Modal */}

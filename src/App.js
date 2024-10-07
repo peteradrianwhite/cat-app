@@ -1,10 +1,8 @@
-import CatInfo from './CatInfo';
-import './App.css';
+import React from 'react';
+import AppRouter from './AppRouter'; // Import AppRouter
 
 const App = () => {
-  return (
-        <CatInfo />    
-  );
+  return <AppRouter />; // Render AppRouter which handles all routing
 };
 
 export default App;

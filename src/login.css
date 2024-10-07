@@ -1,0 +1,59 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f4f4f4; /* Adjust background as needed */
+  }
+  
+  .login-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+  }
+  
+  .button-style {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add drop shadow for 3D effect */
+    max-width: 400px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .button-style:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .login-text {
+    margin-top: 15px;
+    font-size: 1em;
+  }
+  
+  .signup-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
