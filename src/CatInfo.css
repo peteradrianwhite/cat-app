@@ -185,7 +185,7 @@
     background-size: cover; /* Make the background cover the full card */
     background-position: center;
     filter: grayscale(100%); /* Apply grayscale filter */
-    opacity: 0.6; /* Make the image semi-transparent */
+    opacity: 0.9; /* Make the image semi-transparent */
     display: flex;
     justify-content: center;
     align-items: center;
