@@ -1,140 +1,494 @@
-.cat-fact-container {
+
+.app-container {
+    width: 100%;
+    max-width: 1200px; /* Set a maximum width */
+    margin: 0 auto; /* Center the container */
+    text-align: center; /* Center text within the container */
+}
+
+.cat-app-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    max-width: 100%; /* Change to 100% to make it responsive */
-    width: 100%; /* Ensure it takes the full width of the screen */
-    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px; /* Align with the other content */
+    margin: 0 auto; /* Ensure the main container is centered */
 }
 
-.cat-image {
-    max-width: 100%;
-    max-height: 600px;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-    transition: all 0.3s ease; /* Add transition for smooth resizing */
+  
+.cat-app-title {
+    font-family: 'Georgia', 'Times New Roman', serif; /* Classic font */
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    width: 100%;
 }
 
-.cat-fact {
-    margin: 20px 0;
+/* Description Styling */
+.cat-app-description {
     font-size: 1.2em;
-    transition: all 0.3s ease; /* Add transition for smooth resizing */
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 1000px; /* Set a max-width to control the description width */
+    color: #555;
+    margin: 0 auto; /* Center the description */
 }
 
-.button-container {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
-}
-
-.refresh-button,
-.gif-button,
-.save-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    transition: all 0.3s ease; /* Add transition for smooth resizing */
-}
-
-.refresh-button:hover,
-.gif-button:hover,
-.save-button:hover {
-    background-color: #0056b3;
-}
-
+/* Favorites Bar */
 .favorites-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap; /* Allow images to wrap to the next line on smaller screens */
+    width: 100%;
+    max-width: 1000px; /* Ensure the favorites bar aligns with other content */
+    margin-bottom: 40px;
+    text-align: center;
+    margin: 0 auto; /* Center the favorites bar */
 }
 
-.favorite-image {
+.favorites-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Thumbnails styling */
+.favorites-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add space between the thumbnails */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    scroll-behavior: smooth;
+}
+
+.favorites-thumbnails img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.favorites-thumbnails img:hover {
+    transform: scale(1.2); /* Enlarge images on hover */
+}
+
+.favorite-thumbnail {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease; /* Add transition for smooth resizing */
 }
 
-/* Media queries for responsive design */
+/* Arrows for scrolling */
+.carousel-arrow {
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 10px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.carousel-arrow:disabled {
+    color: #ddd; /* Disabled arrow color */
+    cursor: not-allowed;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+    color: #007bff; /* Hover color */
+}
+
+.left-arrow {
+    position: absolute;
+    left: -40px;
+}
+
+.right-arrow {
+    position: absolute;
+    right: -40px;
+}
+  
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Set flexible column width */
+    gap: 20px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto; /* Center the grid */
+}
+
+/* Media queries for responsiveness */
 @media (max-width: 1200px) {
-    .cat-fact-container {
-        padding: 15px;
-    }
-    .cat-fact {
-        font-size: 1.1em;
-    }
-    .refresh-button,
-    .gif-button,
-    .save-button {
-        padding: 8px 16px;
-        font-size: 0.9em;
+    .cat-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 3 columns */
     }
 }
 
 @media (max-width: 900px) {
-    .cat-fact-container {
-        padding: 10px;
-    }
-    .cat-fact {
-        font-size: 1em;
-    }
-    .refresh-button,
-    .gif-button,
-    .save-button {
-        padding: 6px 12px;
-        font-size: 0.8em;
+    .cat-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2 columns */
     }
 }
 
 @media (max-width: 600px) {
-    .cat-fact-container {
-        padding: 5px;
-    }
-    .cat-fact {
-        font-size: 0.9em;
-    }
-    .refresh-button,
-    .gif-button,
-    .save-button {
-        padding: 4px 8px;
-        font-size: 0.7em;
+    .cat-grid {
+        grid-template-columns: 1fr; /* 1 column */
     }
 }
 
-@media (max-width: 500px) {
-    .cat-fact-container {
-        max-width: 100%;
-        padding: 5px;
-    }
-    .cat-image {
-        max-width: 100%;
-        max-height: 400px;
-    }
-    .cat-fact {
-        font-size: 0.8em;
-    }
-    .refresh-button,
-    .gif-button,
-    .save-button {
-        padding: 2px 6px;
-        font-size: 0.6em;
-    }
-    .favorite-image {
-        width: 80px;
-        height: 80px;
-    }
+.cat-item {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* Ensure the images are square */
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+.cat-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire item */
+    border-radius: 10px;
+}
+  
+  .cat-item-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 10px; /* Ensure the inner content has rounded corners */
+  }
+  
+  .cat-item:hover .cat-item-inner {
+    transform: rotateY(180deg); /* Flip on Y-axis */
+  }
+  
+  .cat-front, .cat-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px; /* Apply rounded corners to both front and back */
+    box-sizing: border-box; /* Ensure padding doesn't affect size */
+  }
+  
+  .cat-front {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cat-back {
+    transform: rotateY(180deg); /* Hide the back initially */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    background-size: cover; /* Make the background cover the full card */
+    background-position: center;
+    filter: grayscale(100%); /* Apply grayscale filter */
+    opacity: 0.6; /* Make the image semi-transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .cat-back p {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.8); /* White background to make text readable */
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+
+  .cat-fact {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  .loading-indicator {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #888;
+  }
+  
+  /* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure the modal is above everything */
+  }
+  
+  .modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .modal-body {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .modal-image {
+    max-width: 70%;
+    max-height: 90vh;
+    object-fit: cover;
+  }
+  
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+  
+  .modal-actions button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  /* Video Overlay Styling */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white; /* Full white background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure the video is on top of everything */
+    transform: translateY(0); /* Initial position */
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  /* Video Styling */
+  .intro-video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the video fits properly */
+  }
+  
+  /* Main App Content */
+  .app-content {
+    display: none; /* Initially hidden, will be shown after video */
+  }
+  
+  /* Show app content when video ends */
+  body .video-overlay ~ .app-content {
+    display: block; /* App content is revealed after video ends */
+  }
+
+  .video-ended .video-overlay {
+    transform: translateY(-100%); /* Move off-screen upwards */
+    opacity: 0; /* Fade out the overlay */
+    pointer-events: none; /* Disable interaction with the overlay */
+  }
+
+  .video-exit {
+    transform: translateY(-100%); /* Move off-screen upwards */
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The "x" button, hidden initially */
+.thumbnail-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    z-index: 1;
+  }
+
+  .favorite-thumbnail-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Show the "x" button on hover */
+  .favorite-thumbnail-container:hover .thumbnail-close {
+    display: block; /* Show the "x" button when hovered */
+  }
+
+  /* Style for the Clear Favorites Button */
+.clear-favorites-button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 20px; /* Add some spacing at the top */
+  }
+  
+  .clear-favorites-button {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .clear-favorites-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Optional: Add some drop shadow for a 3D effect */
+  .clear-favorites-button {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .clear-favorites-button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 20px; /* Add space at the top */
+    margin-bottom: 40px; /* Add space below the button */
+  }
+
+  /* General Button Styling (reusable for all buttons) */
+.button-style {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add drop shadow for 3D effect */
+  }
+  
+  .button-style:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  body {
+    background-image: url('background.png'); 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-size: cover; 
+    background-position: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .upload-section input[type="file"], .upload-section input[type="text"] {
+    margin: 10px;
+    padding: 5px;
+  }
+  
+  .upload-section button {
+    margin-top: 10px;
+  }
+  
+
+  /* Modal Styles */
+.upload-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure the modal is above everything */
+  }
+  
+  .upload-modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  /* Button to trigger the modal */
+  .upload-button {
+    background-color: #28a745; /* Green color */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add drop shadow for 3D effect */
+  }
+  
+  .upload-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Modal Body Styles */
+  .upload-modal-body input[type="file"],
+  .upload-modal-body input[type="text"] {
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+  }
+  
+  .upload-modal-body button {
+    margin-top: 10px;
+  }
+  
